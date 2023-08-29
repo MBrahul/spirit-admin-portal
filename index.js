@@ -1,7 +1,6 @@
 const express = require("express");
 const connectToMongo = require('./db.js');
-
-
+require('dotenv').config({path:'.env'});
 const app = express();
 app.use(express.json());
 app.set('view engine','ejs');
@@ -11,7 +10,9 @@ app.get('/',(req,res)=>{
    res.render('adminPortal');
 });
 
-app.listen(3000,()=>{
+const PORT = process.env.PORT || 6010;
+
+app.listen(PORT,()=>{
     console.log("server live..");
     connectToMongo();
 });
